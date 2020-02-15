@@ -6,6 +6,8 @@
 #include <linux/i2c-dev.h>
 #include <common.hpp>
 
+const std::string I2CDev::DEFAULT_NAME = "/dev/i2c-1";
+
 I2CDev::I2CDev(const std::string &devname, int address) {
     open(devname, address);
 }
@@ -40,7 +42,7 @@ void I2CDev::close() {
 }
 
 void I2CDev::read(void *buf, size_t n) {
-    if (::read(_fd, buf, n) < n) {
+    if (::read(_fd, buf, n) < (ssize_t) n) {
         ERROR;
     }
 }
@@ -53,7 +55,7 @@ void I2CDev::read(std::string &str, size_t n) {
 }
 
 void I2CDev::write(const void *buf, size_t n) {
-    if (::write(_fd, buf, n) < n) {
+    if (::write(_fd, buf, n) < (ssize_t) n) {
         ERROR;
     }
 }

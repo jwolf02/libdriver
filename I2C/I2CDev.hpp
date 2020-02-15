@@ -7,6 +7,8 @@
 class I2CDev {
 public:
 
+    static const std::string DEFAULT_NAME;
+
     I2CDev() = default;
 
     I2CDev(const std::string &devname, int address);

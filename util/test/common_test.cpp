@@ -24,6 +24,10 @@ void test_sequence() {
     ASSERT_EQUAL(product(v.begin(), v.end()), (1 * 2 * 3 * 4 * 5 * 6 * 7 * 8));
     ASSERT_EQUAL(::min(v.begin(), v.end()), 1);
     ASSERT_EQUAL(::max(v.begin(), v.end()), 8);
+    auto w = filter(v.begin(), v.end(), [](int a) { return a > 4; });
+    ASSERT_EQUAL(w.size(), 4);
+    auto q = map(v.begin(), v.end(), [](int a) { return a*a; });
+    ASSERT_EQUAL(q[7], 64);
 }
 
 void test_misc() {

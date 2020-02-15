@@ -12,8 +12,10 @@ target_link_libraries(timer PUBLIC rt)
 
 install(TARGETS timer DESTINATION /usr/lib)
 
-add_executable(timer_test test/timer_test.cpp)
-target_include_directories(timer_test PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${GLOBAL_INCLUDE})
-target_link_libraries(timer_test PUBLIC timer rt)
+if (BUILD_TESTS)
+    add_executable(timer_test test/timer_test.cpp)
+    target_include_directories(timer_test PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${GLOBAL_INCLUDE})
+    target_link_libraries(timer_test PUBLIC timer rt)
 
-add_test(NAME Timer COMMAND timer_test)
+    add_test(NAME Timer COMMAND timer_test)
+endif()

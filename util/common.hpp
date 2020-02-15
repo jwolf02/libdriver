@@ -212,6 +212,20 @@ inline T max(iterator begin, iterator end, const T &init=std::numeric_limits<T>:
     return reduce([](const T &a, const T &b) { return std::max(a, b); }, begin, end, init);
 }
 
+template <typename Pred, typename iterator, typename T=typename iterator::value_type, typename Cont=std::vector<T>>
+Cont filter(iterator begin, iterator end, Pred pred) {
+    Cont result;
+    std::copy_if(begin, end, std::back_inserter(result), pred);
+    return result;
+}
+
+template <typename Func, typename iterator, typename T=typename iterator::value_type, typename Cont=std::vector<T>>
+Cont map(iterator begin, iterator end, Func func) {
+    Cont result;
+    std::transform(begin, end, std::back_inserter(result), func);
+    return result;
+}
+
 /***
  * byte swap using gcc built-ins for various interger types
  * @tparam T integer type

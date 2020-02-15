@@ -52,7 +52,7 @@
   }                                                                 \
 }
 
-#define ASSERT_NO_THROW(command)                                    \
+#define ASSERT_NO_EXCEPTION(command)                                \
 {                                                                   \
     try {                                                           \
         command;                                                    \
